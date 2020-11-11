@@ -11,15 +11,26 @@ package problema1;
  */
 public class Nodo {
     private Object dato;
+    private int valor;
     private Nodo derecha;
     private Nodo izquierda;
     private int contador;
     
-    public Nodo(Object dato){
+    public Nodo(String dato){
         this.dato = dato;
+        this.valor = getAscii(dato);
         this.derecha = null;
         this.izquierda = null;
         this.contador = 0;
+    }
+    
+    public int getAscii(String dato){
+        int ascii = 0;
+        char[] caracteres = dato.toCharArray();
+        for (char car:caracteres){
+            ascii = ascii + (int)car;
+        }
+        return ascii;
     }
 
     /**
@@ -76,5 +87,19 @@ public class Nodo {
      */
     public void setContador(int contador) {
         this.contador = contador;
+    }
+
+    /**
+     * @return the valor
+     */
+    public int getValor() {
+        return valor;
+    }
+
+    /**
+     * @param valor the valor to set
+     */
+    public void setValor(int valor) {
+        this.valor = valor;
     }
 }

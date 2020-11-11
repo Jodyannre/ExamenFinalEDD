@@ -16,13 +16,40 @@ public class ArbolB {
         this.head= null;
     }
     
-    public void add(Object dato){
+    public void add(String dato){
         //Método para agregar el nuevo elemento
+        this.head = add(this.head, dato);
+    }
+    
+    private Nodo add(Nodo actual,String dato){
+        if (this.head == null){
+            Nodo nuevo = new Nodo(dato);
+            return nuevo;
+        } 
+        if (getAscii(dato)<actual.getValor()){
+            actual.setIzquierda(add(actual.getIzquierda(),dato));
+        }else if (getAscii(dato)>actual.getValor()){
+            actual.setDerecha(add(actual.getDerecha(),dato));
+        }
+        
+        return actual;
     }
     
     public Nodo buscar(String dato){
+        int ascii = getAscii(dato);
+        return buscar(this.head, ascii);
+    }
+    
+    private Nodo buscar(Nodo actual, int dato){
         //Método para buscar un elemento y si no lo encuentra devuelve null
-        return null;
+        if (actual == null || actual.getValor()==dato){
+            return head;
+        }
+        if (actual.getValor() < dato){
+            return buscar(actual.getDerecha(),dato);
+        }
+        
+        return buscar (actual.getIzquierda(),dato);
     }
     
     public boolean isEmpty(){
@@ -34,9 +61,18 @@ public class ArbolB {
         if (actual == null){
             return;
         }
-        System.out.println("Palabra: " +actual.getDato().toString()+" Ocurrencias: "+actual.getContador());
+        System.out.println("Palabra: " +actual.getDato()+" Ocurrencias: "+actual.getContador());
         recorrer(actual.getIzquierda());
         recorrer(actual.getDerecha());
+    }
+    
+    public int getAscii(String dato){
+        int ascii = 0;
+        char[] caracteres = dato.toCharArray();
+        for (char car:caracteres){
+            ascii = ascii + (int)car;
+        }
+        return ascii;
     }
 
     /**
