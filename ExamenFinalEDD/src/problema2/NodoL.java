@@ -12,9 +12,12 @@ package problema2;
 public class NodoL {
     private Object dato;
     private NodoL siguiente;
+    private int x,y;
     
-    public NodoL(Object dato){
+    public NodoL(Object dato, int x, int y){
         this.dato = dato;
+        this.x = x;
+        this.y = y;
         this.siguiente = null;
     }
 
@@ -44,5 +47,33 @@ public class NodoL {
      */
     public void setSiguiente(NodoL siguiente) {
         this.siguiente = siguiente;
+    }
+
+    /**
+     * @return the x
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * @param x the x to set
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * @return the y
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     * @param y the y to set
+     */
+    public void setY(int y) {
+        this.y = y;
     }
 }
